@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="main-screen">
+      <div class="left-section">
+        <h1>Best Of No Copyright Songs</h1>
+        <div class="song-list"></div>
+      </div>
+      <div class="right-section">
+        <img class="song-cover-image" src="images/covers/1.jpg" />
+      </div>
+    </div>
+    <div class="audio-player">
+      <div class="media-control-icons">
+        <i id="backward" class="fa-solid fa-backward"></i>
+        <i id="master-play" class="fa-solid fa-play"></i>
+        <i id="forward" class="fa-solid fa-forward"></i>
+      </div>
+      <input
+        id="progress-bar"
+        type="range"
+        value="0"
+        class="audio-seek"
+        min="0"
+        max="1000"
+        step="1"
+      />
+    </div>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/dcd833a909.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="scripts/audio-player.js" type="module"></script>
+  <script src="scripts/song-list.js" type="module"></script>
+</html>
