@@ -59,7 +59,7 @@ body{
 
 .song-cover-active{
   transition: opacity 1s;
-  animation: songBannerChange 2s;
+  animation: songBannerChange 0.8s;
 
 }
 
@@ -159,7 +159,7 @@ h1{
   
 }
 .song-duration{
-  margin-right: 20px;
+  padding: 12px 18px 12px 18px;
   cursor: pointer;
 }
 

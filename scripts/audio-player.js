@@ -14,7 +14,7 @@ const songBannerFind = (index) => {
   songs.forEach((song) => {
     if (song.id === index + 1) {
       audioElement.src = song.songSource;
-      setTimeout(()=>{songBanner.src = song.songCover},900);
+      setTimeout(()=>{songBanner.src = song.songCover},320);
       songBannerChange()
       songIndex = index + 1;
     }
@@ -102,7 +102,7 @@ forward.addEventListener("click", () => {
   audioElement.play();
   setTimeout(()=>{
     songBanner.src = `images/covers/${songIndex}.jpg`;
-  },1000);
+  },300);
   masterPlayButtonPlay();
   changeNowPlaying(songIndex);
   songBannerChange()
@@ -114,7 +114,7 @@ backward.addEventListener("click", () => {
     audioElement.play();
     setTimeout(()=>{
       songBanner.src = `images/covers/${songIndex}.jpg`;
-    },1500);
+    },300);
     
     masterPlayButtonPlay();
     changeNowPlaying(songIndex);
@@ -130,7 +130,7 @@ const songBannerChange = ()=>{
   songBannerImage.classList.add('song-cover-active');
   const tempTimeOut=setTimeout(()=>{
     songBannerImage.classList.remove('song-cover-active');
-  },1400)
+  },600)
   
 
 }
