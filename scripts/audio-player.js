@@ -1,16 +1,16 @@
 import { songs } from "./song-list.js";
 let songIndex = 1;
-let audioElement =new Audio("songs/1.mp3");
+let audioElement = new Audio("songs/1.mp3");
 let masterPlay = document.getElementById("master-play");
 let forward = document.getElementById("forward");
 let backward = document.getElementById("backward");
 let progressBar = document.getElementById("progress-bar");
-let volumeBar= document.getElementById('volume-control-bar');
-volumeBar.value=100
+let volumeBar = document.getElementById("volume-control-bar");
+const nowPlaying = document.querySelector(".playing-song-title");
+volumeBar.value = 100;
 const songBanner = document.querySelector(".song-cover-image");
 
-
-const songBannerFind=(index)=>{
+const songBannerFind = (index) => {
   songs.forEach((song) => {
     if (song.id === index + 1) {
       audioElement.src = song.songSource;
@@ -18,26 +18,35 @@ const songBannerFind=(index)=>{
       songIndex = index + 1;
     }
   });
-}
+};
 
-const masterPlayButtonPlay= ()=>{
+const masterPlayButtonPlay = () => {
   masterPlay.classList.remove("fa-play");
   masterPlay.classList.add("fa-pause");
-}
-const masterPlayButtonPause= ()=>{
+};
+
+const masterPlayButtonPause = () => {
   masterPlay.classList.remove("fa-pause");
   masterPlay.classList.add("fa-play");
-}
+};
 
+const changeNowPlaying = (songIndex) => {
+  let currentSong;
+  songs.forEach((song) => {
+    if (songIndex === song.id) {
+      currentSong = song.songName;
+    }
+  });
+  nowPlaying.innerHTML = currentSong;
+};
 
 masterPlay.addEventListener("click", () => {
   if (audioElement.paused || audioElement.currentTime <= 0) {
     audioElement.play();
-    masterPlayButtonPlay()
-    
+    masterPlayButtonPlay();
   } else {
     audioElement.pause();
-    masterPlayButtonPause()
+    masterPlayButtonPause();
     togglePlayButtons();
   }
 });
@@ -54,13 +63,12 @@ progressBar.addEventListener("change", () => {
   );
 });
 
-volumeBar.addEventListener('change', ()=>{
-  audioElement.volume= parseInt(volumeBar.value*10)/100
-})
-volumeBar.addEventListener('wheel',(event)=>{
-  audioElement.volume= event.deltaY
-})
-
+volumeBar.addEventListener("change", () => {
+  audioElement.volume = parseInt(volumeBar.value * 10) / 100;
+});
+volumeBar.addEventListener("wheel", (event) => {
+  audioElement.volume = event.deltaY;
+});
 
 const togglePlayButtons = () => {
   songList.forEach((element) => {
@@ -80,25 +88,27 @@ songList.forEach((songListElement, index) => {
     masterPlay.classList.remove("fa-play");
     masterPlay.classList.add("fa-pause");
 
-    songBannerFind(index)
-
+    songBannerFind(index);
+    changeNowPlaying(index+1);
     audioElement.play();
   });
 });
 forward.addEventListener("click", () => {
   songIndex += 1;
-  console.log(songIndex)
+  console.log(songIndex);
   audioElement.src = `songs/${songIndex}.mp3`;
   audioElement.play();
   songBanner.src = `images/covers/${songIndex}.jpg`;
-  masterPlayButtonPlay()
+  masterPlayButtonPlay();
+  changeNowPlaying(songIndex);
 });
 backward.addEventListener("click", () => {
-  if (songIndex > 1){
+  if (songIndex > 1) {
     songIndex -= 1;
     audioElement.src = `songs/${songIndex}.mp3`;
     audioElement.play();
     songBanner.src = `images/covers/${songIndex}.jpg`;
     masterPlayButtonPlay();
+    changeNowPlaying(songIndex);
   }
 });

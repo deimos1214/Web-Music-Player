@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @font-face {
   font-family: Elianto;
   src: url("../data/good-times-rg.otf");
@@ -60,26 +63,11 @@ h1{
   font-family:Elianto;
   margin: 24px 28px;
   font-size: 2.4rem;
-  color: white;
-  filter: drop-shadow(0 0 10px rgb(255, 255, 255));
-  animation: animation1 3s infinite;
+  color: var(--secondary-accent);
+  filter: drop-shadow(0 0 2px rgb(0, 0, 0));
+
 }
 
-
-@keyframes animation1{
-  from{
-    filter: drop-shadow(0 0 5px rgb(255, 0, 0));
-  }
-  25%{
-    filter: drop-shadow(0 0 5px rgb(9, 255, 0));
-  }
-  75%{
-    filter: drop-shadow(0 0 5px rgb(0, 191, 255));
-  }
-  100%{
-    filter: drop-shadow(0 0 5px rgb(255, 0, 0));
-  }
-}
 
 .song-list{
   display: flex;
@@ -168,6 +156,7 @@ h1{
   position: fixed;
   background-color: black;
   bottom: 0;
+  position: fixed;
   
 }
 .media-control-icons{
@@ -175,6 +164,9 @@ h1{
   height:48px;
   display: flex;
   justify-content: center;
+  position: absolute;
+  left: 50%;
+  translate: -50%;
 }
 .media-control-icons i{
   width: 100%;
@@ -218,7 +210,7 @@ h1{
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  padding-top: 16px;
+  padding-top: 28px;
 }
 
 .playing-song-title{
@@ -255,4 +247,23 @@ h1{
 .volume-controls:hover > .volume-control-seek{
   width: 80%;
   opacity: 1;
+}
+.playing-song-title{
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  width: 156px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media(max-width:875px){
+  .volume-controls{
+    opacity: 0;
+    pointer-events: none;
+  }
+  .playing-song-title{
+    font-size: 14px;
+    width: 100px;
+  }
 }
