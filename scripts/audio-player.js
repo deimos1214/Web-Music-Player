@@ -5,6 +5,8 @@ let masterPlay = document.getElementById("master-play");
 let forward = document.getElementById("forward");
 let backward = document.getElementById("backward");
 let progressBar = document.getElementById("progress-bar");
+let volumeBar= document.getElementById('volume-control-bar');
+volumeBar.value=100
 const songBanner = document.querySelector(".song-cover-image");
 
 
@@ -51,6 +53,14 @@ progressBar.addEventListener("change", () => {
     (progressBar.value * audioElement.duration) / 1000
   );
 });
+
+volumeBar.addEventListener('change', ()=>{
+  audioElement.volume= parseInt(volumeBar.value*10)/100
+})
+volumeBar.addEventListener('wheel',(event)=>{
+  audioElement.volume= event.deltaY
+})
+
 
 const togglePlayButtons = () => {
   songList.forEach((element) => {
