@@ -14,7 +14,8 @@ const songBannerFind = (index) => {
   songs.forEach((song) => {
     if (song.id === index + 1) {
       audioElement.src = song.songSource;
-      songBanner.src = song.songCover;
+      setTimeout(()=>{songBanner.src = song.songCover},900);
+      songBannerChange()
       songIndex = index + 1;
     }
   });
@@ -91,6 +92,7 @@ songList.forEach((songListElement, index) => {
     songBannerFind(index);
     changeNowPlaying(index+1);
     audioElement.play();
+    songBannerChange()
   });
 });
 forward.addEventListener("click", () => {
@@ -98,17 +100,37 @@ forward.addEventListener("click", () => {
   console.log(songIndex);
   audioElement.src = `songs/${songIndex}.mp3`;
   audioElement.play();
-  songBanner.src = `images/covers/${songIndex}.jpg`;
+  setTimeout(()=>{
+    songBanner.src = `images/covers/${songIndex}.jpg`;
+  },1000);
   masterPlayButtonPlay();
   changeNowPlaying(songIndex);
+  songBannerChange()
 });
 backward.addEventListener("click", () => {
   if (songIndex > 1) {
     songIndex -= 1;
     audioElement.src = `songs/${songIndex}.mp3`;
     audioElement.play();
-    songBanner.src = `images/covers/${songIndex}.jpg`;
+    setTimeout(()=>{
+      songBanner.src = `images/covers/${songIndex}.jpg`;
+    },1500);
+    
     masterPlayButtonPlay();
     changeNowPlaying(songIndex);
+    songBannerChange()
   }
 });
+
+
+const songBannerImage=document.querySelector('.song-cover-image')
+
+const songBannerChange = ()=>{
+  songBannerImage.classList.remove('song-cover-active');
+  songBannerImage.classList.add('song-cover-active');
+  const tempTimeOut=setTimeout(()=>{
+    songBannerImage.classList.remove('song-cover-active');
+  },1400)
+  
+
+}

@@ -47,6 +47,7 @@ body{
   height: 100%;
   display: flex;
   justify-content: flex-end;
+  background-color: var(--secondary-color);
 
 }
 .song-cover-image{
@@ -54,8 +55,24 @@ body{
   width: 100%;
   height: 100%;
   border-radius: 0 2% 2% 0;
+}
 
+.song-cover-active{
+  transition: opacity 1s;
+  animation: songBannerChange 2s;
 
+}
+
+@keyframes songBannerChange{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }  
 }
 
 h1{
